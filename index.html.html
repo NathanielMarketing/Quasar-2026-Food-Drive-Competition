@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Holiday Food Drive 2026 | The Pulse</title>
+<script>
+/* =====================================================
+   FOOD DRIVE NUMBERS: EDIT THIS BLOCK EACH FRIDAY
+   Only change the numbers and the date text.
+   Keep the quotes, commas and brackets as they are.
+   ===================================================== */
+const DRIVE = {
+  lastUpdated: "Friday, November 27",
+  goalPerPerson: 50,
+  offices: [
+    { name: "Woodbridge",    raised: 4380, donors: 54, people: 120 },
+    { name: "Sterling Road", raised: 3960, donors: 41, people: 90  },
+    { name: "Ottawa",        raised: 3710, donors: 38, people: 70  },
+    { name: "Vancouver",     raised: 1870, donors: 22, people: 55  },
+    { name: "North Bay",     raised: 2030, donors: 25, people: 35  },
+    { name: "Timmins",       raised: 1140, donors: 19, people: 30  }
+  ]
+};
+/* ===== END OF EDITABLE BLOCK ===== */
+</script>
+<style>
+:root{
+  --blue:#1d5bd8; --blue-deep:#123f9e; --navy:#10285c; --gold:#ffc21a; --gold-soft:#fff3cc;
+  --sky:#eaf2ff; --bg:#ffffff; --ink:#1c2333; --ink-soft:#4a5468; --line:#d8e0ee; --track:#e4eaf5; --card:#ffffff;
+  --t-woodbridge:#1d5bd8; --t-sterling:#e0457b; --t-ottawa:#0fa397; --t-vancouver:#7a5af8; --t-northbay:#f07d00; --t-timmins:#2b9e48;
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --blue:#2f6be6; --blue-deep:#163d8f; --navy:#10285c; --gold:#ffc933; --gold-soft:#3a3010;
+  --sky:#161d2b; --bg:#10141c; --ink:#ebeff6; --ink-soft:#aeb7c7; --line:#2a3344; --track:#263042; --card:#1a2130;
+  --t-woodbridge:#5b8ff2; --t-sterling:#f06b97; --t-ottawa:#2fc4b6; --t-vancouver:#9b82fb; --t-northbay:#ff9a2e; --t-timmins:#4cc46a;
+  color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --blue:#2f6be6; --blue-deep:#163d8f; --navy:#10285c; --gold:#ffc933; --gold-soft:#3a3010;
+  --sky:#161d2b; --bg:#10141c; --ink:#ebeff6; --ink-soft:#aeb7c7; --line:#2a3344; --track:#263042; --card:#1a2130;
+  --t-woodbridge:#5b8ff2; --t-sterling:#f06b97; --t-ottawa:#2fc4b6; --t-vancouver:#9b82fb; --t-northbay:#ff9a2e; --t-timmins:#4cc46a;
+  color-scheme:dark;}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Segoe UI","Segoe UI Web (West European)",-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",Arial,sans-serif;line-height:1.55}
+.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem)}
+.eyebrow{color:#d99a00;font-size:1.5rem;font-weight:700;margin:0 0 .1rem}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .eyebrow{color:var(--gold)}}
+:root[data-theme="dark"] .eyebrow{color:var(--gold)}
+h2{font-size:clamp(2rem,3.6vw,2.8rem);font-weight:600;line-height:1.12;margin:0 0 1rem}
+p{max-width:62ch}
+a{color:var(--blue)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--blue);color:#fff;text-decoration:none;font-weight:700;padding:.8rem 1.4rem;border-radius:999px;border:2px solid var(--blue)}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+.btn.white{background:#fff;border-color:#fff;color:var(--blue-deep)}
+.btn.outline{background:transparent;border-color:#fff;color:#fff}
+section{padding:4.5rem 0}
+.sky{background:var(--sky)}
+
+/* Hero */
+.hero{background:var(--blue);color:#fff;position:relative;overflow:hidden}
+.hero .deco{position:absolute;inset:0;pointer-events:none}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.2fr 1fr;gap:3rem;padding-top:4rem;padding-bottom:4.5rem;align-items:center}
+.hero .eyebrow{color:var(--gold);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:600}
+.hero h1{font-size:clamp(3rem,7.5vw,5.6rem);font-weight:700;line-height:.98;margin:0 0 1.25rem;letter-spacing:-.02em}
+.hero p{font-size:1.2rem;color:#e3ecff;margin:0 0 1.75rem}
+.hero .actions{display:flex;flex-wrap:wrap;gap:.75rem}
+.teams{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 1.5rem;padding:0;list-style:none}
+.teams li{background:rgba(255,255,255,.14);border-radius:999px;padding:.25rem .8rem .25rem .45rem;font-size:.9rem;font-weight:600;display:flex;align-items:center;gap:.4rem}
+.teams i{width:.8rem;height:.8rem;border-radius:50%;display:inline-block;border:2px solid #fff}
+.tally{background:var(--gold);color:var(--navy);border-radius:18px;padding:2rem 2rem 1.6rem;box-shadow:0 18px 0 -6px var(--blue-deep);transform:rotate(-1.5deg)}
+.tally .label{font-weight:700;font-size:1rem;margin:0 0 .25rem}
+.tally .raised{font-size:clamp(3rem,6vw,4.4rem);font-weight:800;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.tally .of{margin:.4rem 0 1.1rem;font-weight:600}
+.tally .bar{height:20px;background:rgba(16,40,92,.16);border-radius:999px;overflow:hidden}
+.tally .bar span{display:block;height:100%;width:0;background:var(--navy);border-radius:999px;transition:width 1.6s cubic-bezier(.2,.7,.2,1)}
+.tally .meta{display:flex;justify-content:space-between;font-size:.95rem;font-weight:600;margin-top:.7rem}
+
+/* Steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin:2rem 0 0;padding:0;list-style:none;counter-reset:s}
+.steps li{counter-increment:s;background:var(--card);border:2px solid var(--line);border-radius:16px;padding:1.5rem}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:3rem;height:3rem;border-radius:50%;background:var(--gold);color:var(--navy);font-size:1.5rem;font-weight:800;margin-bottom:1rem}
+.steps h3{font-size:1.3rem;margin:0 0 .35rem}
+.steps p{margin:0;color:var(--ink-soft)}
+.rulebox{margin-top:2rem;padding:1.4rem 1.6rem;background:var(--gold-soft);border-radius:16px;font-size:1.15rem;border:2px dashed #e5ae00}
+
+/* Leaderboard */
+.lb-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:1rem}
+.updated{color:var(--ink-soft);margin:.25rem 0 0;font-weight:600}
+.toggle{display:inline-flex;background:var(--card);border:2px solid var(--line);border-radius:999px;padding:4px}
+.toggle button{font:inherit;font-weight:700;background:transparent;color:var(--ink-soft);border:0;padding:.5rem 1.1rem;border-radius:999px;cursor:pointer}
+.toggle button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.board{list-style:none;padding:0;margin:2rem 0 0;display:grid;gap:.75rem}
+.row{display:grid;grid-template-columns:3rem 13rem 1fr 7.5rem;gap:1.25rem;align-items:center;padding:1rem 1.25rem;background:var(--card);border-radius:16px;border:2px solid var(--line)}
+.row.first{border-color:var(--gold);box-shadow:0 0 0 4px var(--gold-soft)}
+.rank{width:2.6rem;height:2.6rem;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:1.15rem;background:var(--track);color:var(--ink-soft)}
+.r1 .rank{background:#ffc21a;color:#10285c}.r2 .rank{background:#c9d2de;color:#10285c}.r3 .rank{background:#e2a46b;color:#3a1d05}
+.office b{display:flex;align-items:center;gap:.45rem;font-size:1.15rem}
+.office b i{width:.75rem;height:.75rem;border-radius:50%;flex:none}
+.office small{color:var(--ink-soft);font-size:.88rem}
+.track{position:relative;display:block;height:24px;background:var(--track);border-radius:999px}
+.fill{position:absolute;inset:0 auto 0 0;width:0;border-radius:999px;transition:width 1.2s cubic-bezier(.2,.7,.2,1)}
+.goal{position:absolute;top:-6px;bottom:-6px;width:3px;border-radius:2px;background:var(--ink)}
+.goal-label{position:absolute;top:-1.55rem;transform:translateX(-50%);font-size:.75rem;font-weight:700;color:var(--ink-soft);white-space:nowrap}
+.pct{text-align:right}
+.pct b{display:block;font-size:1.6rem;font-weight:800;line-height:1.05}
+.pct small{color:var(--ink-soft);font-size:.85rem}
+.tag{display:inline-block;background:var(--gold);color:var(--navy);font-size:.72rem;font-weight:800;padding:.15rem .55rem;border-radius:999px}
+.sample{display:inline-block;margin-top:1rem;font-size:.85rem;color:var(--ink-soft)}
+.awards{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:2rem}
+.awards div{background:var(--card);border-radius:16px;padding:1.25rem 1.5rem;border:2px solid var(--line)}
+.awards h3{margin:0 0 .25rem;font-size:1.2rem}
+.awards p{margin:0;color:var(--ink-soft)}
+
+/* Offices */
+.offices{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:2rem}
+.oc{background:var(--card);border:2px solid var(--line);border-top:8px solid var(--c);border-radius:16px;padding:1.5rem;display:flex;flex-direction:column}
+.oc h3{margin:0;font-size:1.4rem;color:var(--c)}
+.oc .city{font-weight:600;font-size:.92rem;color:var(--ink-soft);margin:.1rem 0 1rem}
+.oc dl{margin:0 0 1.25rem;font-size:.95rem}
+.oc dt{font-weight:700;display:inline}
+.oc dd{display:inline;margin:0}
+.oc dd::after{content:"";display:block;margin-bottom:.3rem}
+.oc .btn{margin-top:auto;align-self:flex-start;background:var(--c);border-color:var(--c);font-size:.95rem;padding:.6rem 1.2rem}
+.ph{color:var(--ink-soft);background:var(--sky);padding:0 .35rem;border-radius:4px}
+
+/* Timeline */
+.timeline{list-style:none;padding:0;margin:2.25rem 0 0;display:grid;grid-template-columns:repeat(5,1fr);position:relative}
+.timeline::before{content:"";position:absolute;left:0;right:0;top:12px;height:4px;border-radius:2px;background:linear-gradient(90deg,var(--blue),var(--gold))}
+.timeline li{position:relative;padding:2.4rem 1rem 0 0}
+.timeline li::before{content:"";position:absolute;top:2px;left:0;width:24px;height:24px;border-radius:50%;background:var(--card);border:5px solid var(--blue)}
+.timeline li.big::before{background:var(--gold);border-color:var(--gold)}
+.timeline .date{font-weight:800}
+.timeline h3{font-size:1.1rem;margin:.1rem 0 .3rem;color:var(--blue)}
+.timeline p{margin:0;font-size:.93rem;color:var(--ink-soft)}
+
+/* Prize */
+.prize{background:var(--gold);color:var(--navy)}
+.prize .eyebrow{color:var(--navy)}
+.prize .wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:3rem;align-items:center}
+.prize p{font-size:1.15rem;font-weight:500}
+.trophy{justify-self:center}
+
+/* FAQ */
+details{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:1rem 1.25rem;margin-bottom:.6rem}
+summary{cursor:pointer;font-weight:700;font-size:1.1rem;list-style:none;display:flex;justify-content:space-between;gap:1rem}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--blue);font-size:1.5rem;line-height:1}
+details[open] summary::after{content:"\2212"}
+details p{margin:.6rem 0 0;color:var(--ink-soft)}
+
+/* Closing */
+.closing{background:var(--blue);color:#fff;text-align:center}
+.closing p{margin:0 auto 1.5rem;color:#e3ecff;font-size:1.1rem}
+
+@media (max-width:900px){
+  .hero .wrap,.prize .wrap{grid-template-columns:1fr}
+  .tally{transform:none}
+  .steps,.offices{grid-template-columns:1fr 1fr}
+  .timeline{grid-template-columns:1fr;gap:1.25rem}
+  .timeline::before{left:10px;right:auto;top:0;bottom:0;width:4px;height:auto;background:linear-gradient(180deg,var(--blue),var(--gold))}
+  .timeline li{padding:0 0 0 2.5rem}
+}
+@media (max-width:640px){
+  .steps,.offices,.awards{grid-template-columns:1fr}
+  .row{grid-template-columns:2.6rem 1fr 5.5rem;grid-template-areas:"r o p" "t t t";row-gap:.6rem}
+  .rank{grid-area:r}.office{grid-area:o}.pct{grid-area:p}.trackwrap{grid-area:t;padding-top:1.3rem}
+}
+@media (prefers-reduced-motion:reduce){.fill,.tally .bar span{transition:none}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <svg class="deco" viewBox="0 0 1200 600" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
+    <g fill="#ffc21a" opacity=".9"><polygon points="1010,-20 1110,-20 1200,90 1100,90"/><polygon points="1100,110 1200,110 1110,220 1010,220"/></g>
+    <g fill="#ffffff" opacity=".12"><polygon points="860,240 980,240 1090,380 970,380"/><polygon points="970,400 1090,400 980,540 860,540"/><polygon points="700,-40 790,-40 870,60 780,60"/></g>
+    <g fill="#ffffff" opacity=".5"><circle cx="640" cy="70" r="4"/><circle cx="760" cy="200" r="3"/><circle cx="1160" cy="300" r="5"/><circle cx="820" cy="560" r="4"/><circle cx="560" cy="540" r="3"/><circle cx="1050" cy="470" r="3"/></g>
+  </svg>
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Giving back together</p>
+      <h1>Holiday Food Drive 2026</h1>
+      <p>Six offices, four weeks, one goal: help fill the shelves at the food banks in our own communities. Every dollar stays local, and the office that gets furthest past its goal takes home the Pulse Cup.</p>
+      <ul class="teams" id="teamChips"></ul>
+      <div class="actions">
+        <a class="btn gold" href="#offices">Donate to your office’s food bank</a>
+        <a class="btn outline" href="#leaderboard">See the leaderboard</a>
+      </div>
+    </div>
+    <div class="tally" aria-label="Company total">
+      <p class="label">Raised so far</p>
+      <div class="raised" id="totalRaised">$17,090</div>
+      <div class="of">of our <span id="totalGoal">$20,000</span> company goal</div>
+      <div class="bar"><span id="totalBar"></span></div>
+      <div class="meta"><span id="totalPct">85% there</span><span>Closes Friday, Dec 11</span></div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">How it works</p>
+    <h2>Three steps, about two minutes</h2>
+    <ol class="steps">
+      <li><h3>Find your office</h3><p>Scroll to your office below. Each one has a single donation link to its local food bank.</p></li>
+      <li><h3>Donate online</h3><p>Give any amount through that link. The food bank sends your tax receipt directly.</p></li>
+      <li><h3>Check back Fridays</h3><p>Office champions report totals every Friday, and the leaderboard updates the same afternoon.</p></li>
+    </ol>
+    <div class="rulebox"><strong>The one rule:</strong> every office’s goal is <span id="perPerson">$50</span> per person. The leaderboard ranks offices by how far they are toward that goal, so a 30-person office has the same shot at winning as a 120-person one.</div>
+  </div>
+</section>
+
+<section class="sky" id="leaderboard">
+  <div class="wrap">
+    <div class="lb-head">
+      <div>
+        <p class="eyebrow">The race is on</p>
+        <h2 style="margin-bottom:0">Office leaderboard</h2>
+        <p class="updated" id="updated">Updated Friday, November 27</p>
+      </div>
+      <div class="toggle" role="group" aria-label="Rank offices by">
+        <button type="button" aria-pressed="true" data-sort="goal">% of goal</button>
+        <button type="button" aria-pressed="false" data-sort="part">Participation</button>
+      </div>
+    </div>
+    <ol class="board" id="board"></ol>
+    <span class="sample">Sample numbers shown for design purposes.</span>
+    <div class="awards">
+      <div><h3>🏆 Top office</h3><p>Highest % of goal on December 11 wins the pizza party and the Pulse Cup.</p></div>
+      <div><h3>🙌 Most people giving</h3><p>Highest share of staff who donated, any amount, earns a bonus lunch.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="offices">
+  <div class="wrap">
+    <p class="eyebrow">Give local</p>
+    <h2>Find your office’s food bank</h2>
+    <p style="color:var(--ink-soft)">Your donation goes to the food bank closest to your office and counts toward your office’s total.</p>
+    <div class="offices" id="officeCards"></div>
+  </div>
+</section>
+
+<section class="sky">
+  <div class="wrap">
+    <p class="eyebrow">Mark your calendar</p>
+    <h2>Four weeks to the finish</h2>
+    <ol class="timeline">
+      <li class="big"><span class="date">Mon, Nov 16</span><h3>Kickoff</h3><p>Donation links go live and office champions launch the drive.</p></li>
+      <li><span class="date">Fri, Nov 20</span><h3>First standings</h3><p>Week one leaderboard posted here and in Teams.</p></li>
+      <li><span class="date">Fri, Nov 27</span><h3>Leadership match</h3><p>Donations made this week are matched by leadership, up to the match limit.</p></li>
+      <li><span class="date">Fri, Dec 4</span><h3>Photo challenge</h3><p>Share an office team photo for bonus points on the board.</p></li>
+      <li class="big"><span class="date">Fri, Dec 11</span><h3>Final day</h3><p>Links close at 5 pm. Winners revealed at the holiday all-hands.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="prize">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">What’s at stake</p>
+      <h2>A pizza party and the Pulse Cup</h2>
+      <p>The winning office hosts the pizza party and keeps the travelling Pulse Cup on display until next year’s drive, with their office name added to the plaque.</p>
+    </div>
+    <svg class="trophy" width="190" height="220" viewBox="0 0 170 200" aria-hidden="true">
+      <path d="M45 20h80v50a40 40 0 0 1-80 0z" fill="#10285c"/>
+      <path d="M45 32H22a22 22 0 0 0 26 34M125 32h23a22 22 0 0 1-26 34" fill="none" stroke="#10285c" stroke-width="8"/>
+      <rect x="77" y="108" width="16" height="34" fill="#10285c"/>
+      <rect x="50" y="142" width="70" height="14" rx="2" fill="#10285c"/>
+      <rect x="40" y="156" width="90" height="30" rx="3" fill="#ffffff"/>
+      <text x="85" y="176" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="800" fill="#1d5bd8">2026</text>
+      <polygon points="85,38 90,50 103,50 93,58 97,71 85,63 73,71 77,58 67,50 80,50" fill="#ffc21a"/>
+    </svg>
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="max-width:900px">
+    <p class="eyebrow">Good to know</p>
+    <h2>Questions</h2>
+    <details><summary>Do I get a tax receipt?</summary><p>Yes. Receipts come straight from the food bank you donate to, usually by email right after you give.</p></details>
+    <details><summary>Can I donate to a different office’s food bank?</summary><p>You can, and your donation will count toward that office’s total. If you work remotely, pick the office you’re closest to.</p></details>
+    <details><summary>Why rank by % of goal instead of total dollars?</summary><p>Goals are based on headcount, so ranking by % of goal keeps it fair for smaller offices like North Bay and Timmins.</p></details>
+    <details><summary>Who reports my office’s total?</summary><p>Each office has a food drive champion who checks the donation page every Friday and sends the total in. Their name is on your office card.</p></details>
+    <details><summary>Can I donate food instead of money?</summary><p>This year the drive is online donations only. Food banks can stretch every dollar further than a grocery donation, and it keeps the scoring simple.</p></details>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <h2>Show us your office’s spirit</h2>
+    <p>Send in photos of your team, your champion in action, or your best holiday sweater, and we’ll feature them on the Pulse.</p>
+    <a class="btn white" href="#">Share a photo</a>
+  </div>
+</section>
+
+<script>
+const cities={"Woodbridge":"Woodbridge, ON","Sterling Road":"Toronto, ON","Ottawa":"Ottawa, ON","Vancouver":"Vancouver, BC","North Bay":"North Bay, ON","Timmins":"Timmins, ON"};
+const colors={"Woodbridge":"--t-woodbridge","Sterling Road":"--t-sterling","Ottawa":"--t-ottawa","Vancouver":"--t-vancouver","North Bay":"--t-northbay","Timmins":"--t-timmins"};
+const companies={"Sterling Road":"Pratus"};
+const PER=DRIVE.goalPerPerson, fmt=n=>"$"+Math.round(n).toLocaleString("en-CA");
+const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const offices=DRIVE.offices.map(o=>({name:o.name,co:companies[o.name]||"Quasar",staff:o.people,raised:o.raised,donors:o.donors,c:`var(${colors[o.name]||"--blue"})`}));
+offices.forEach(o=>{o.goal=o.staff*PER;o.pg=o.raised/o.goal*100;o.pp=o.donors/o.staff*100;});
+const totalRaised=offices.reduce((s,o)=>s+o.raised,0), totalGoal=offices.reduce((s,o)=>s+o.goal,0), totalPct=Math.round(totalRaised/totalGoal*100);
+
+document.getElementById("perPerson").textContent=fmt(PER);
+document.getElementById("totalGoal").textContent=fmt(totalGoal);
+document.getElementById("totalPct").textContent=totalPct+"% there";
+document.getElementById("updated").textContent="Updated "+DRIVE.lastUpdated;
+document.getElementById("teamChips").innerHTML=offices.map(o=>`<li><i style="background:${o.c}"></i>${o.name}</li>`).join("");
+
+// One moment of motion: the company total counts up as its bar fills
+const rEl=document.getElementById("totalRaised"), bar=document.getElementById("totalBar");
+if(reduce){rEl.textContent=fmt(totalRaised);bar.style.width=Math.min(totalPct,100)+"%";}
+else{
+  rEl.textContent="$0";
+  requestAnimationFrame(()=>{bar.style.width=Math.min(totalPct,100)+"%";});
+  const start=performance.now(), dur=1600;
+  (function tick(t){const k=Math.min((t-start)/dur,1),e=1-Math.pow(1-k,3);rEl.textContent=fmt(totalRaised*e);if(k<1)requestAnimationFrame(tick);})(start);
+}
+
+function render(mode){
+  const key=mode==="part"?"pp":"pg";
+  const list=[...offices].sort((a,b)=>b[key]-a[key]);
+  const scale=Math.max(125,Math.ceil(Math.max(...offices.map(o=>o[key]))/25)*25);
+  const board=document.getElementById("board");
+  board.innerHTML=list.map((o,i)=>{
+    const v=o[key], w=Math.min(v,scale)/scale*100, g=100/scale*100;
+    const sub=mode==="part"?`${o.donors} of ${o.staff} people gave`:`${fmt(o.raised)} of ${fmt(o.goal)}`;
+    return `<li class="row r${i+1}${i===0?" first":""}">
+      <span class="rank">${i+1}</span>
+      <span class="office"><b><i style="background:${o.c}"></i>${o.name}${i===0?' <span class="tag">In the lead</span>':""}</b><small>${o.co}, ${o.staff} people</small></span>
+      <span class="trackwrap"><span class="track" role="img" aria-label="${o.name}: ${Math.round(v)}%">
+        <span class="fill" data-w="${w}" style="background:${o.c}"></span>
+        ${mode==="goal"?`<span class="goal" style="left:${g}%">${i===0?'<span class="goal-label">Goal</span>':""}</span>`:""}
+      </span></span>
+      <span class="pct"><b>${Math.round(v)}%</b><small>${sub}</small></span>
+    </li>`;}).join("");
+  const fills=board.querySelectorAll(".fill");
+  requestAnimationFrame(()=>requestAnimationFrame(()=>fills.forEach(f=>f.style.width=f.dataset.w+"%")));
+}
+document.querySelectorAll(".toggle button").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".toggle button").forEach(x=>x.setAttribute("aria-pressed",x===b));
+  render(b.dataset.sort);
+}));
+render("goal");
+
+document.getElementById("officeCards").innerHTML=offices.map(o=>`
+  <article class="oc" style="--c:${o.c}">
+    <h3>${o.name}</h3>
+    <p class="city">${cities[o.name]||""}${o.co==="Pratus"?" (Pratus)":""}</p>
+    <dl>
+      <dt>Food bank:</dt><dd><span class="ph">Local food bank name</span></dd>
+      <dt>Champion:</dt><dd><span class="ph">Champion name</span></dd>
+      <dt>Office goal:</dt><dd>${fmt(o.goal)}</dd>
+    </dl>
+    <a class="btn" href="#">Donate to ${o.name}</a>
+  </article>`).join("");
+</script>
+</body>
+</html>
